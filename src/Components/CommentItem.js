@@ -12,8 +12,8 @@ class CommentItem extends Component{
         return(
         <Paper square>
             <CardContent>
-                <Typography color="textSecondary" gutterBottom style={{fontSize:12, width:'100%'}}>By {this.props.comment.by}</Typography>
-                <p dangerouslySetInnerHTML={{__html:this.props.comment.text}}></p>
+                <Typography color="textSecondary" gutterBottom style={{fontSize:12, width:'100%'}}>By {this.props.comment.by ? this.props.comment.by : "[deleted]"}</Typography>
+                <p dangerouslySetInnerHTML={{__html:(this.props.comment.text ? this.props.comment.text : "[deleted]")}}></p>
             </CardContent>
         </Paper>)
     }
