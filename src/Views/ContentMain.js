@@ -6,7 +6,7 @@ import CommentItem from '../Components/CommentItem.js';
 class ContentMain extends Component{
     constructor(props){
         super(props);
-        this.state = {comments:[]};
+        this.state = {article:{}, comments:[]};
         this.retrieveComments = this.retrieveComments.bind(this);
     }
 
@@ -26,15 +26,24 @@ class ContentMain extends Component{
     }
 
     componentDidMount(){
-        console.log(this.props);
-        if(this.props.currentArticle)
-        this.retrieveComments(this.props.currentArticle.kids);
+        const self = this;
+        if(this.props.match.params.articleId){
+            axios.get('/item/'+this.props.match.params.articleId+'.json').then(function(response){
+                self.setState({article:response.data});
+                self.retrieveComments(response.data.kids);
+            }).catch(function(error){
+                console.log(error);
+            })
+        }else{
+
+            
+        }
     }
 
     render(){
         return(
         <div style={{maxHeight: 'calc(100vh - 64px)',    overflowY: 'scroll'}}>
-            <ArticleSummary article={this.props.currentArticle}/>
+            <ArticleSummary article={this.state.article}/>
             <div>
                 {this.state.comments.map((comment, index)=>
                     <CommentItem key={index} comment={comment}/>

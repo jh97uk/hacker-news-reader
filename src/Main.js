@@ -22,8 +22,8 @@ class Main extends Component{
         this.onArticleSelected = this.onArticleSelected.bind(this);
     }
 
-    onArticleSelected(article){
-        this.setState({selectedArticle:article});
+    onArticleSelected(articleId){
+        this.props.history.push('/'+articleId);
     }
 
     render(){
@@ -40,8 +40,8 @@ class Main extends Component{
                         <ContentSidebar onArticleSelected={this.onArticleSelected}/>
                     </Paper>
                     <Grid item sm={8} md={9}>
-                        <Route exact path={this.props.match.path}  component={()=><ContentMain currentArticle={this.state.selectedArticle}/>} />
-                        <Route exact path="/:articleId"  component={()=><ContentMain currentArticle={this.state.selectedArticle}/>} />
+                        <Route exact path={this.props.match.path}  component={(props)=><ContentMain {...props}/>} />
+                        <Route exact path="/:articleId"  component={(props)=><ContentMain {...props}/>} />
                     </Grid>
                 </Grid>
             </div>
