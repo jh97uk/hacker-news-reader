@@ -25,6 +25,7 @@ class Main extends Component{
             hideArticleView:(this.props.location.pathname == "/")
         }
         this.onArticleSelected = this.onArticleSelected.bind(this);
+        this.goBack = this.goBack.bind(this);
     }
 
     onArticleSelected(articleId){
@@ -32,6 +33,11 @@ class Main extends Component{
         this.setState({hideArticleView:false})
     }
 
+    goBack(){
+        this.props.history.push('/');
+        this.setState({hideArticleView:true})
+    }
+    
     render(){
         console.log(this.state.hideArticleView)
         return(
@@ -40,7 +46,7 @@ class Main extends Component{
             height: "100vh"}}>
                 <AppBar position="static">
                     <Toolbar>
-                        <Hidden mdUp smDown={this.state.hideArticleView}><Button onClick={()=>this.setState({hideArticleView:true})}>Back</Button></Hidden>
+                        <Hidden mdUp smDown={this.state.hideArticleView}><Button onClick={this.goBack}>Back</Button></Hidden>
                     </Toolbar>
                 </AppBar>
                 <Grid container style={{flex: "1 1 auto"}}>
