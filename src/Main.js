@@ -13,6 +13,8 @@ import Hidden from '@material-ui/core/Hidden';
 
 import Button from '@material-ui/core/Button';
 
+import ArrowBack from '@material-ui/icons/ArrowBack';
+
 class Main extends Component{
     constructor(props){
         super(props);
@@ -40,7 +42,7 @@ class Main extends Component{
             <div>
                 <AppBar position="static">
                     <Toolbar>
-                        <Hidden mdUp smDown={this.state.hideArticleView}><Button onClick={this.goBack}>Back</Button></Hidden>
+                        <Hidden mdUp smDown={this.state.hideArticleView}><Button onClick={this.goBack}><ArrowBack style={{color:'white'}}/></Button></Hidden>
                     </Toolbar>
                 </AppBar>
                 <Grid container>
